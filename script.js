@@ -30,6 +30,7 @@ createBooking('LH123', undefined, 1000);
 
 //
 
+/* 
 const flight = 'LH234';
 const jonas = {
   name: 'Jonas Schmedtmann',
@@ -60,7 +61,8 @@ const newPassport = function (person) {
 };
 
 newPassport(jonas);
-checkIn(flight, jonas);
+checkIn(flight, jonas); 
+*/
 
 // Summary
 
@@ -71,3 +73,34 @@ checkIn(flight, jonas);
 // - When we pass primitive values, the function works with a value, which is a copy of the original value.
 
 // - When we pass an object, the function works with a value, which is a copy of the reference that address to the spot in the memory where the original object is in the memory (still is not a reference).
+
+//First-Class and High-Order Functions
+//
+
+const oneWord = function (str) {
+  return str.replace(/ /g, '').toLowerCase();
+};
+
+const upperFirstWord = function (str) {
+  const [first, ...others] = str.split(' ');
+  return [first.toUpperCase(), ...others].join(' ');
+};
+
+//Higher-order function
+const transformer = function (str, fn) {
+  console.log(`Original string: ${str}`);
+  console.log(`Transformed string: ${fn(str)}`);
+
+  console.log(`Transformed by: ${fn.name}`);
+};
+
+transformer('JavaScript is the best!', upperFirstWord);
+transformer('JavaScript is the est!', oneWord);
+
+// JS uses callbacks all the time
+const high5 = function () {
+  console.log('👋');
+};
+
+document.body.addEventListener('click', high5);
+['Jonas', 'Martha', 'Adam'].forEach(high5);
